@@ -33,15 +33,11 @@ import {
   CaseOutcomePredictor
 } from './components/pages';
 
-// Court Portal Components
-import { JudgeDashboard, CaseStatusTracking, NoticeGenerator, HearingSuccessRate } from './components/pages/court';
-import { CourtAuthProvider } from './contexts/CourtAuthContext';
-
 // Utils
 import { LOGO_URL } from './utils/mockData';
 
 function App() {
-  const { currentUser, userRole } = useAuth();
+  const { currentUser } = useAuth();
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedLawyer, setSelectedLawyer] = useState<any>(null);
 
@@ -52,12 +48,6 @@ function App() {
   
   const renderPage = () => {
     if (!currentUser) return <AuthPage />;
-    
-    const renderCourtPage = () => (
-      <CourtAuthProvider>
-        <JudgeDashboard />
-      </CourtAuthProvider>
-    );
     
     switch (currentPage) {
       case 'predict': 
@@ -97,28 +87,8 @@ function App() {
         return <ConstitutionalRights />;
       case 'community': 
         return <CommunityForum />;
-      case 'court-dashboard':
-        return renderCourtPage();
-      case 'court-cases':
-        return (
-          <CourtAuthProvider>
-            <CaseStatusTracking />
-          </CourtAuthProvider>
-        );
-      case 'court-notices':
-        return (
-          <CourtAuthProvider>
-            <NoticeGenerator />
-          </CourtAuthProvider>
-        );
-      case 'court-analytics':
-        return (
-          <CourtAuthProvider>
-            <HearingSuccessRate />
-          </CourtAuthProvider>
-        );
       default: 
-        return <HomePage onNavClick={setCurrentPage} userRole={userRole} />;
+        return <HomePage onNavClick={setCurrentPage} />;
     }
   };
 
@@ -170,65 +140,47 @@ function App() {
               >
                 Home
               </button>
-
-              {userRole === 'court' ? (
-                <NavGroup
-                  title="Court Portal"
-                  items={[
-                    { label: 'Dashboard', page: 'court-dashboard', icon: Gavel },
-                    { label: 'Case Management', page: 'court-cases', icon: FileSearch },
-                    { label: 'Notice Generator', page: 'court-notices', icon: FileText },
-                    { label: 'Analytics', page: 'court-analytics', icon: BrainCircuit }
-                  ]}
-                />
-              ) : (
-                <>
-                  <NavGroup 
-                    title="AI Tools" 
-                    items={[
-                      { label: "Smart Chat", page: "chat", icon: MessageCircle }, 
-                      { label: "Outcome Predictor", page: "outcome", icon: BrainCircuit }, 
-                      { label: "Doc Generator", page: "docs", icon: FileText }, 
-                      { label: "Doc Analyzer", page: "analyze", icon: FileSearch }, 
-                      { label: "Voice Assistant", page: "voice", icon: Mic }
-                    ]} 
-                  />
-                  
-                  <NavGroup 
-                    title="Resources" 
-                    items={[
-                      { label: "IPC Lookup", page: "ipc", icon: Search }, 
-                      { label: "Case Laws", page: "cases", icon: Landmark }, 
-                      { label: "Penalties", page: "penalty", icon: Scale }, 
-                      { label: "Find Advocate", page: "find", icon: Users }, 
-                      { label: "Recent Verdicts", page: "verdicts", icon: Scroll }, 
-                      { label: "Community", page: "community", icon: Users }
-                    ]} 
-                  />
-                </>
-              )}
               
-              {userRole !== 'court' && (
-                <>
-                  <div className="h-8 w-px bg-slate-200 mx-4"></div>
-                  
-                  <button 
-                    onClick={() => setCurrentPage('history')} 
-                    className="p-2.5 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all" 
-                    title="History"
-                  >
-                    <History className="w-5 h-5" />
-                  </button>
-                  
-                  <button 
-                    onClick={() => setCurrentPage('bookmarks')} 
-                    className="p-2.5 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all" 
-                    title="Bookmarks"
-                  >
-                    <Bookmark className="w-5 h-5" />
-                  </button>
-                </>
-              )}
+              <NavGroup 
+                title="AI Tools" 
+                items={[
+                  { label: "Smart Chat", page: "chat", icon: MessageCircle }, 
+                  { label: "Outcome Predictor", page: "outcome", icon: BrainCircuit }, 
+                  { label: "Doc Generator", page: "docs", icon: FileText }, 
+                  { label: "Doc Analyzer", page: "analyze", icon: FileSearch }, 
+                  { label: "Voice Assistant", page: "voice", icon: Mic }
+                ]} 
+              />
+              
+              <NavGroup 
+                title="Resources" 
+                items={[
+                  { label: "IPC Lookup", page: "ipc", icon: Search }, 
+                  { label: "Case Laws", page: "cases", icon: Landmark }, 
+                  { label: "Penalties", page: "penalty", icon: Scale }, 
+                  { label: "Find Advocate", page: "find", icon: Users }, 
+                  { label: "Recent Verdicts", page: "verdicts", icon: Scroll }, 
+                  { label: "Community", page: "community", icon: Users }
+                ]} 
+              />
+              
+              <div className="h-8 w-px bg-slate-200 mx-4"></div>
+              
+              <button 
+                onClick={() => setCurrentPage('history')} 
+                className="p-2.5 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all" 
+                title="History"
+              >
+                <History className="w-5 h-5" />
+              </button>
+              
+              <button 
+                onClick={() => setCurrentPage('bookmarks')} 
+                className="p-2.5 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all" 
+                title="Bookmarks"
+              >
+                <Bookmark className="w-5 h-5" />
+              </button>
               
               <button 
                 onClick={handleLogout} 
