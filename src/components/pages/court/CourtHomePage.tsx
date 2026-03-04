@@ -1,27 +1,26 @@
 import React from 'react';
 import { 
-  FileText, BrainCircuit, Users, Gavel, MessageCircle, Trophy, Mic, 
-  Search, Scale, BookUser, MessageSquare, Scroll, Landmark, ChevronRight,
-  ArrowRight, Upload, CheckCircle2, Users as UsersIcon
+  FileText, BrainCircuit, Gavel, FileSearch, Calendar, 
+  Scale, ChevronRight, ArrowRight, Upload, CheckCircle2,
+  BarChart3, Bell, Users, Clock, Database, Mic, Shield
 } from 'lucide-react';
 
-export const HomePage = ({ onNavClick }: { onNavClick: (page: string) => void }) => {
+export const CourtHomePage = ({ onNavClick }: { onNavClick: (page: string) => void }) => {
   const coreTools = [
-    { title: "Smart Chat", desc: "Chat with AI to solve legal queries instantly.", icon: MessageCircle, action: 'chat' },
-    { title: "Outcome Predictor", desc: "AI + Database powered case outcome prediction.", icon: BrainCircuit, action: 'outcome' },
-    { title: "Doc Generator", desc: "Create rental agreements, affidavits & wills.", icon: FileText, action: 'docs' },
-    { title: "Nyay Vidya", desc: "Gamified learning. Earn badges by learning law.", icon: Trophy, action: 'learn' },
-    { title: "Voice Assistant", desc: "Speak in Hindi, Marathi, or English.", icon: Mic, action: 'voice' },
+    { title: "Case Management", desc: "Track, update, and manage all court cases efficiently.", icon: FileSearch, action: 'court-cases' },
+    { title: "Notice Generator", desc: "AI-powered legal notice and order generation.", icon: FileText, action: 'court-notices' },
+    { title: "Analytics Dashboard", desc: "Insights on case trends and hearing success rates.", icon: BrainCircuit, action: 'court-analytics' },
+    { title: "Hearing Schedule", desc: "Manage court calendar and hearing schedules.", icon: Calendar, action: 'court-dashboard' },
   ];
 
   const referenceTools = [
-    { title: "IPC Lookup", desc: "Search 500+ penal code sections.", icon: Search, action: 'ipc' },
-    { title: "Case Law", desc: "Browse landmark court verdicts.", icon: Landmark, action: 'cases' },
-    { title: "Penalties", desc: "Calculate fines and jail terms.", icon: Scale, action: 'penalty' },
-    { title: "Constitution", desc: "Know your fundamental rights.", icon: BookUser, action: 'const' },
-    { title: "Find Advocate", desc: "Connect with top lawyers.", icon: Users, action: 'find' },
-    { title: "Community Forum", desc: "Discuss legal issues anonymously.", icon: MessageSquare, action: 'community' },
-    { title: "Recent Verdicts", desc: "Stay updated with latest judgments.", icon: Scroll, action: 'verdicts' },
+    { title: "Case Database", desc: "Search and access complete case records.", icon: Database, action: 'court-cases' },
+    { title: "Legal Research", desc: "Access precedents and case laws.", icon: Scale, action: 'court-analytics' },
+    { title: "Performance Metrics", desc: "Track disposal rates and case outcomes.", icon: BarChart3, action: 'court-analytics' },
+    { title: "Audio Recording", desc: "Record and transcribe court proceedings.", icon: Mic, action: 'court-dashboard' },
+    { title: "Notifications", desc: "Manage court updates and alerts.", icon: Bell, action: 'court-dashboard' },
+    { title: "User Management", desc: "Manage court staff and roles.", icon: Users, action: 'court-dashboard' },
+    { title: "e-Signature", desc: "Digitally sign orders and judgments.", icon: Shield, action: 'court-dashboard' },
   ];
 
   return (
@@ -39,33 +38,33 @@ export const HomePage = ({ onNavClick }: { onNavClick: (page: string) => void })
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
             </span>
-            Nyay Saathi v2.0 Live
+            Court Portal Live
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-extrabold mb-8 tracking-tight leading-tight animate-slide-up drop-shadow-2xl text-white">
-            Justice, <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">Simplified.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">Justice</span>, Digitized.
           </h1>
           
           <p className="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            Your intelligent legal companion. Decode Indian law, generate documents, and find expert advocates with the power of Ethical AI.
+            Your intelligent court management system. Streamline case tracking, automate notices, and deliver justice efficiently with AI-powered tools.
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-6 animate-slide-up" style={{ animationDelay: '0.2s' }}>
             {/* Primary Action Button - Gold */}
             <button 
-              onClick={() => onNavClick('chat')}
+              onClick={() => onNavClick('court-cases')}
               className="group relative px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg rounded-full shadow-lg shadow-amber-500/30 transition-all hover:scale-105 flex items-center justify-center gap-3"
             >
-              Start Free Consultation 
+              Manage Cases 
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             {/* Secondary Action Button - Transparent/Glass */}
             <button 
-              onClick={() => onNavClick('find')}
+              onClick={() => onNavClick('court-dashboard')}
               className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white font-semibold text-lg rounded-full transition-all hover:scale-105 flex items-center justify-center gap-3 shadow-lg"
             >
-              <UsersIcon className="w-5 h-5" />
-              Find a Lawyer
+              <Calendar className="w-5 h-5" />
+              View Calendar
             </button>
           </div>
         </div>
@@ -76,16 +75,16 @@ export const HomePage = ({ onNavClick }: { onNavClick: (page: string) => void })
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-5"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif font-bold text-white mb-4">How Nyay Saathi Works</h2>
+            <h2 className="text-4xl font-serif font-bold text-white mb-4">How Court Portal Works</h2>
             <div className="h-1.5 w-20 bg-amber-500 mx-auto rounded-full shadow-lg"></div>
-            <p className="text-slate-300 mt-6 text-lg max-w-2xl mx-auto font-light">Legal assistance used to be complicated. We made it a three-step conversation.</p>
+            <p className="text-slate-300 mt-6 text-lg max-w-2xl mx-auto font-light">Modern court management made simple with intelligent automation.</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { title: "1. Ask or Upload", desc: "Type your query, speak in your language, or upload a document.", icon: Upload },
-              { title: "2. AI Processing", desc: "Our engine scans the Constitution, IPC, and Case Laws instantly.", icon: BrainCircuit },
-              { title: "3. Instant Solution", desc: "Receive a simple explanation, a drafted document, or next steps.", icon: CheckCircle2 },
+              { title: "1. Access Cases", desc: "View all assigned cases with real-time updates and notifications.", icon: Gavel },
+              { title: "2. AI Processing", desc: "Generate notices, analyze trends, and get intelligent recommendations.", icon: BrainCircuit },
+              { title: "3. Track Progress", desc: "Monitor case status, hearing outcomes, and performance metrics.", icon: CheckCircle2 },
             ].map((step, idx) => (
               <div key={idx} className="bg-white/5 p-10 rounded-3xl border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden group">
                 <div className="w-16 h-16 bg-amber-500/20 rounded-2xl flex items-center justify-center mb-8 text-amber-400 shadow-lg group-hover:scale-110 transition-transform">
@@ -104,8 +103,8 @@ export const HomePage = ({ onNavClick }: { onNavClick: (page: string) => void })
         <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl">
             <span className="text-amber-600 font-bold tracking-wider uppercase text-sm">Features</span>
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mt-2">Legal Power Tools</h2>
-            <p className="text-slate-600 mt-4 text-lg">Everything you need to navigate the legal system, in one dashboard.</p>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-900 mt-2">Court Management Tools</h2>
+            <p className="text-slate-600 mt-4 text-lg">Everything you need to manage court operations efficiently, in one dashboard.</p>
           </div>
         </div>
 
@@ -132,12 +131,12 @@ export const HomePage = ({ onNavClick }: { onNavClick: (page: string) => void })
         </div>
       </section>
 
-      {/* KNOWLEDGE BASE */}
+      {/* ADDITIONAL FEATURES */}
       <section className="py-24 bg-slate-100 relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif font-bold text-slate-900 mb-6">Comprehensive Knowledge Base</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto text-lg">Instant access to the pillars of Indian Law.</p>
+            <h2 className="text-4xl font-serif font-bold text-slate-900 mb-6">Additional Features</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">Extended tools for comprehensive court management.</p>
           </div>
           
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -163,4 +162,4 @@ export const HomePage = ({ onNavClick }: { onNavClick: (page: string) => void })
   );
 };
 
-export default HomePage;
+export default CourtHomePage;
